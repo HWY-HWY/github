@@ -4,8 +4,4 @@ add line
 no push
 nopush
 is hwy no master
-<<<<<<< HEAD
-hwy is a nice man
-=======
-hwy is a goot man
->>>>>>> hwy
+--------1.0-----------
