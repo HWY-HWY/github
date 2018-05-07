@@ -11,7 +11,7 @@ win.title("hwy")
 win.geometry("400x400")
 # 绑定参数
 lbv = tkinter.StringVar()
-listbox = tkinter.Listbox(win, selectmode=tkinter.EXTENDED, listvariable=lbv,)
+listbox = tkinter.Listbox(win, selectmode=tkinter.MULTIPLE, listvariable=lbv,)
 str = ["python", "java", "php", "C++", "C#"]
 # 增加参数
 for text in str:
