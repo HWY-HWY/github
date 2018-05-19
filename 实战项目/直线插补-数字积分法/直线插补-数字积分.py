@@ -1,5 +1,5 @@
 ﻿"""
-逐点比较法--直线插补
+数字积分法--直线插补
 """
 # -- coding:utf-8 --
 import matplotlib.pyplot as plt
