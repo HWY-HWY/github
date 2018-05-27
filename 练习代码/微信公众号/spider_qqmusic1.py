@@ -1,4 +1,4 @@
-# -*-coding:utf-8-*-
+﻿# -*-coding:utf-8-*-
 # encoding =utf-8
 import requests
 import json
@@ -64,6 +64,6 @@ f-8&notice=0&platform=yqq&needNewCode=0" % (music_keword)
 id_list = spider1(url)
 spider2(id_list[0])
 data = spider3(id_list[1])
-# 拼接数据的到音乐的播放url
+# 拼接数据得到音乐的播放url
 music_url = "http://dl.stream.qqmusic.qq.com/%s?vkey=%s&guid=%s&uin=0&fromtag=66" % (data[1], data[0], guid)
 print(music_url)
