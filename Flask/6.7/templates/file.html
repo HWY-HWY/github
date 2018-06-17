@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<form action="/get_filename/" method="post", enctype=multipart/form-data>
+    <input type="file" name="filename[]" multiple="multiple">
+    <br>
+    <hr>
+    <h4>password:</h4>
+    <br>
+    <input type="password", name="password">
+    <hr>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

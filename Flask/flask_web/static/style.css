@@ -1,0 +1,7 @@
+body{
+	    /*background-color: lightgrey;*/
+	    background-image: url("../static/bz.jpg");
+	        background-size: 100%;
+		    background-attachment: fixed;
+}
+
