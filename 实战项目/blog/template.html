@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href={% static "CSS/style.css" %}>
+</head>
+<body>
+<div>
+    <!-- -----------------头部：导航栏------------------ -->
+
+    <div id="div_hea">
+        <div id="text_hea">
+            <b><small><a href="http://www.huangwenyang.cn/" target="_blank">主页</a></small></b>
+            <b><small>你好：游客</small></b>
+        </div>
+    </div>
+    <hr style="margin: 0px; color: rgba(27,14,26,0.34)">
+    <!-- ------------------左部：博客宗旨----------------- -->
+    <div id="div_left">
+        <div id="div_left_1">
+            <img id="hwy_img" src={% static "python1/python1.6/hwy.png" %} alt="">
+            <h3>博客宗旨</h3>
+
+                把最实用的经验，分享给最需要的读者，希望每一位来访的朋友都能有所收获！
+                <br>
+                毕竟，生活不止眼前的苟且，还有手下的代码和嘴上的扯淡！
+
+            <br/>
+            <br>
+            <img style="width: 20%" src={% static "python1/python1.6/hwy.png" %}>
+            <h3>微信公众号：一稚杨</h3>
+            <img style="width: 100%;" src={% static "python1/python1.6/二维码.jpg" %}>
+
+        </div>
+        <div id="line">
+
+        </div>
+    </div>
+
+    <!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;中部：博客正文-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+    <div id="div_center">
+        <div id="div_center_1">
+            <h1><small>Flask</small></h1>
+            <h3>通过表单提交数据</h3>
+            <hr>
+            <h3>概要</h3>
+            <ul>
+                <li>
+
+                        通常网页与网页之间会存在一些数据交互，<code>input</code>据交互通常是通过表单的
+形式来提交的，比如A网页需要向B网页提交数据，那么通常在A网页形成一个
+数据表单，然后当A网页请求/访问B网页时会将该表单提交给B网页，从而完成数据的
+交互。
+
+                </li>
+
+            </ul>
+<h3>常用的提交数据的方式</h3>
+            <ul>
+    <li>提交表单的方法常用的有两种：<code>GET</code>和<code>POST</code>，GET提交数据的方法是将数据添加在url之后
+进行传输，而POST是将数据放到HTTP请求包的包体中进行传输，所以POST方法较安全，但是由于要将数据进行打包，所以
+    传输效率较GET较慢，但是GET传输数据的大小存在限制，所以GET通常用于不重要的小型数据传输，而POST用于机密数据和大型数据的传输。</li></ul>
+
+
+            <h3 id="-">创建并提交表单</h3>
+<ul>
+    <li>创建表单一般使用<code>HTML</code>中的<code>form</code>表单结合<code>input</code>控件完成，form表单中可以通过
+        <code>method</code>设置提交数据的方式，通过<code>action</code>指定提交数据的目标网址。</li>
+<pre>&lt;form action=&quot;/get_data/&quot;, method=&quot;get&quot;&gt;
+    &lt;h3&gt;username:&lt;/h3&gt;
+    &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;
+    &lt;br&gt;
+    &lt;h3&gt;password:&lt;/h3&gt;
+    &lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;
+    &lt;br&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+</pre>
+    <li>这里指定了提交数据的方式是<code>GET</code>，用input控件设置了两个输入框，一个输入框是<code>text</code>类型，另一个是
+        <code>password</code>类型，两者的区别在于后者的输入是非明文的，最后通过<code>submit</code>属性的input控件提交数据。</li>
+    <li>仅仅设置表单提交数据的方式还不行，还需要设置接受数据网页的请求方式，
+默认网页的请求方式是GET，如果不修改请求方式，直接向网页发送POST数据，
+是不能正确得到数据的，必须在定义视图函数路由时指定其请求方式，通常这样设置：
+        <code>@app.route("/get_data/", methods=["GET", "POST"])</code>，这样就可以接受get和post请求了</li>
+<pre>@app.route("/get_data/", methods=["GET", "POST"])
+def get_data():
+    # 得到post提交的数据
+    if request.method == "GET":
+        data = request.args.get("username")
+    # 得到请求的方法
+    method = request.method
+    # 得到cookie
+    data = request.form
+    cookie = request.cookies
+    print(data)
+    return render_template("get_data.html", data=data)
+
+</pre>
+</ul>
+<h3 id="django-">获得表单提交的数据</h3>
+<p>由于提交数据的方式有两种，所以对应的获取数据方式也有两种</p>
+<ol>
+<li>获取<code>GET</code>方式提交的数据<ul>
+<li>当我们使用GET方式提交数据时，可以看到我们访问接受数据的网址时的路由发生了变化，不在是原来的网址，
+而是在后面增加了一些数据，而这些数据正是我们需要提交的数据，这就是GET传输数据的方法：通过URL传输数据。
+那么如何获得其中的数据呢？这就是需要用到Flask提供的一个方法：request，这个方法可以获取所有的与HTTP
+    请求有关的数据，其中<code>request.args.get(key)</code>可以获得GET请求发送的数据，其中的key值
+    是对应的变量。需要注意的是：得到的数据是一个不可修改的字典，可以通过<code>to_dict（）</code>转化为普通字典。</li>
+<pre>@app.route("/get_data/", methods=["GET", "POST"])
+def get_data():
+    # 得到post提交的数据
+    if request.method == "GET":
+        data = request.args.get("username")
+    # 得到请求的方法
+    method = request.method
+    # 得到cookie
+    data = request.form
+    cookie = request.cookies
+    print(data)
+    return render_template("get_data.html", data=data)
+</pre>
+</ul>
+</li><li>获取<code>POST</code>方式提交的数据<ul>
+    <li>POST提交数据是将数据进行打包，然后将数据放到HTTP请求包的包体中进行传输，从而保证数据的安全。要获取POST提交的数据，用到的
+        方法是：<code>使用request.form</code>，还可以通过request获得其余与HTTP请求相关的数据，比如cookie，heards等。</li>
+<pre>@app.route("/get_data/", methods=["GET", "POST"])
+def get_data():
+    # 得到post提交的数据
+    if request.method == "GET":
+        data = request.args.get("username")
+    # 得到请求的方法
+    method = request.method
+    # 得到cookie
+    data = request.form
+    cookie = request.cookies
+    print(data)
+    return render_template("get_data.html", data=data)
+</pre>
+</ul>
+</ol>
+
+<h3 id="csrftoken">通过make_response设置cookie等参数</h3>
+<ul>
+
+<li>
+    <p>
+        对于Flask框架而言，当我们使用return返回数据时，并不是直接放回，而是要将数据
+        交给Flask中的<code>Response</code>这个类进行实例化后再返回，其中的处理包括创建cookie、请求头等，
+        但是有时我们也需要自己设置cookie或者请求头，Flask提供了一个让用户创建<code>Response</code>的方法：<code>make_response</code>。
+        我们可以通过该方法来自定义cookie、请求头等。
+    </p>
+        <pre>@app.route("/post")
+def post():
+    # 通过make_response设置cookie
+    res = make_response(render_template("post.html"))
+    # 第一个参数对应于cookie中的key，第二个参数对应于value
+    res.set_cookie("name", "hwy")
+    res.set_cookie("age", '22')
+    return res
+</pre>
+</li>
+</ul>
+
+
+        </div>
+    </div>
+
+    <!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;右部：最近更新-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+    <div id="div_right">
+
+        <div id="div_right_1">
+            <small>
+                <b>最近更新</b>
+            <ul>
+                <li><a href="">Flask-通过表单提交数据</a></li>
+                <li><a href="">更新2</a></li>
+                <li><a href="">更新3</a></li>
+            </ul>
+                <hr>
+                <b>今日头条</b>
+                <ul>
+                    {% for info in  news%}
+                    <li><a href="{{ info.url }}" target="_blank">{{ info.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </small>
+
+            <hr>
+            <b>聊天机器人</b>
+            <div id="div_right_2" style="float: left; border: 1px #000000   solid; border-radius: 15px">
+
+                    <div id="example_main" style="width: 100%; height: 100%">
+                    <div id="scrolldIV" style="overflow:auto;">
+                    </div>
+                    <div style="height: 10%; text-align: center" >
+                    <input placeholder="输入内容开始聊天" type="text" id="robot" style="width: 60%; margin: 0px;border-radius: 4px ;display: inline-block" onkeypress="showHint(this.value)"/>
+                    <input style="width: 30%" type="button" value="发送" onclick="Send(document.getElementById('robot').value)"/>
+                    </div>
+                    </div>
+
+
+
+
+            </div>
+
+
+        </div>
+        <div id="line_r">
+
+        </div>
+
+
+
+
+    </div>
+
+    <!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;底部-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+    <div id="div_footer">
+        <div id="text_footer">
+            <b><small>
+                黄文杨的个人博客网站&nbsp;&nbsp;©2017-2018 &nbsp;&nbsp;&nbsp;请尊重作者的知识版权
+                <br>
+                蜀ICP备18012424号
+            </small></b>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+var xmlHttp
+var i=13;
+var j=0;
+var html = '';
+
+function showHint(str)
+
+{
+if(event.keyCode==13)
+	{
+
+
+		Send(str);
+
+
+			     var now = new Date();
+		var div = document.getElementById('scrolldIV');
+          div.innerHTML = div.innerHTML + '<h5  id="123" style="clear: both; margin: 0px">' + '<span id="info">' + str + '<span/>' + '</h5>' + '<br/>';
+                    div.scrollTop = div.scrollHeight;
+	}
+
+}
+
+function Send(str)
+
+{
+
+ if (str.length==0)
+
+    {
+
+    document.getElementById("txtHint").innerHTML="";
+
+    return;
+
+    }
+
+          xmlHttp=GetXmlHttpObject()
+
+                     if (xmlHttp==null)
+
+                            {
+
+                            alert ("您的浏览器不支持AJAX！");
+
+                            return;
+
+                            }
+
+                     var url="http://www.tuling123.com/openapi/api?key=672035b1bde5440e83eae485429b0d99";
+
+                     url=url+"&info="+str;
+
+                     url=url+"&userid=1234" ;
+
+                     xmlHttp.onreadystatechange=stateChanged;
+
+                     xmlHttp.open("GET",url,true);
+
+                     xmlHttp.send(null);
+
+                      document.getElementById("robot").value="";
+
+}
+
+function stateChanged()
+{
+if (xmlHttp.readyState==4)
+
+{
+
+var msg=eval('(' + xmlHttp.responseText + ')');
+//查询返回的数据
+//	    html += '<span class="first active"><div class="number">' + msg.text + '</div></span>'
+//		document.getElementById('container').innerHTML = html;
+//	    div.scrollTop = div.scrollHeight;
+	    var now = new Date();
+		var div = document.getElementById('scrolldIV');
+          div.innerHTML = div.innerHTML +'<h5 id="123" style="float: right; margin: 0px;">' + '<span id="info" >' + msg.text + '<span/>' + '</h5>'
+              + '<br/>';
+                    div.scrollTop = div.scrollHeight;
+
+
+}
+
+}
+
+function GetXmlHttpObject()
+
+{
+
+  var xmlHttp=null;
+
+  try
+
+    {
+
+    // Firefox, Opera 8.0+, Safari
+
+    xmlHttp=new XMLHttpRequest();
+
+    }
+
+  catch(e)
+
+    {
+
+    // Internet Explorer
+
+    try
+
+      {
+
+      xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+
+      }
+
+    catch (e)
+
+      {
+
+      xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+
+      }
+
+    }
+
+return xmlHttp;
+
+}
+
+</script>
+
+
+</body>
+</html>
