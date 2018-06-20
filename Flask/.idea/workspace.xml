@@ -2,29 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9371340-22df-49f4-9f0b-6869385b6c5d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/POST_data.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/get_data.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/models/man.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/settings/secret.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/__init__.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/404.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/action.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/POST_data.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/file.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/flash.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/get_data.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/post.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/重定向.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/views1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/views2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint2/views/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/forms/data_forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/models/man.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/run_app.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/settings/secret.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/settings/setting.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/forms/data_forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/重定向.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/post.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/6.7/templates/flash.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/templates/data_get.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/templates/index.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../微信公众号/config.yaml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint2/views/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/views1.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/run_app.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flask_web/blueprint1/views/views2.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../微信公众号/index.wsgi" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../微信公众号/weixin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../微信公众号/config.yaml" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,46 +46,12 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="run_app.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask_web/run_app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="man.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/flask_web/models/man.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <element signature="e#116#162#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/.virtualenvs/Flask-AGvcODjy/Lib/codecs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="327" column="25" lean-forward="true" selection-start-line="327" selection-start-column="25" selection-end-line="327" selection-end-column="25" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secret.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flask_web/settings/secret.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding>
-                <marker date="1528602986675" expanded="true" signature="139:217" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -177,7 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -190,64 +155,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask_web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask_web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Flask" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flask_web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Pythoncode/django" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Flask_Mac" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
@@ -686,132 +602,31 @@
     <entry file="file://$PROJECT_DIR$/6.7/static/uploads/知乎头像.jpg" />
     <entry file="file://$PROJECT_DIR$/6.7/static/uploads/C6522A99-9D0F-4579-AD6D-61B6EB2F6D2E.png" />
     <entry file="file://$PROJECT_DIR$/6.7/static/uploads/872B36ED-0FD4-4722-A0D5-77CFAE2DE4AF.png" />
-    <entry file="file://$PROJECT_DIR$/6.7/templates/hwy.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/templates/get_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/templates/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/6.7/templates/hwy.png" />
+    <entry file="file://$PROJECT_DIR$/6.7/templates/get_data.html" />
+    <entry file="file://$PROJECT_DIR$/6.7/templates/post.html" />
     <entry file="file://$PROJECT_DIR$/6.7/static/uploads/公众号.jpg" />
-    <entry file="file://$PROJECT_DIR$/6.7/templates/file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="61" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/templates/flash.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/templates/action.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/重定向.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/templates/404.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.7/POST_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/6.7/templates/file.html" />
+    <entry file="file://$PROJECT_DIR$/6.7/templates/flash.html" />
+    <entry file="file://$PROJECT_DIR$/6.7/templates/action.html" />
+    <entry file="file://$PROJECT_DIR$/6.7/重定向.py" />
+    <entry file="file://$PROJECT_DIR$/6.7/templates/404.html" />
+    <entry file="file://$PROJECT_DIR$/6.7/POST_data.py" />
     <entry file="file://$PROJECT_DIR$/6.8.py" />
     <entry file="file://$PROJECT_DIR$/6.8/models/books.py" />
     <entry file="file://$PROJECT_DIR$/6.8/model.py" />
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/response.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/web.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/url_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/6.2/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile" />
+    <entry file="file://$PROJECT_DIR$/Pipfile.lock" />
+    <entry file="file://$PROJECT_DIR$/6.2/1.py" />
+    <entry file="file://$PROJECT_DIR$/6.2/response.py" />
+    <entry file="file://$PROJECT_DIR$/6.2/web.py" />
+    <entry file="file://$PROJECT_DIR$/6.2/url_data.py" />
+    <entry file="file://$PROJECT_DIR$/6.2/2.py" />
+    <entry file="file://$PROJECT_DIR$/6.2/config.py" />
     <entry file="file://$USER_HOME$/.virtualenvs/Flask-AGvcODjy/Lib/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="369" column="0" lean-forward="false" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,161 +652,30 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flask_web/config.py" />
-    <entry file="file://$PROJECT_DIR$/flask_web/blueprint2/views/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="25" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/templates/data_get.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="48" lean-forward="false" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/forms/data_forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/views1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding>
-            <element signature="e#119#142#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/views2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#438#461#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Pythoncode/SQLAlchemy/connect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-          <folding>
-            <element signature="e#115#151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/settings/setting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="80" lean-forward="true" selection-start-line="7" selection-start-column="80" selection-end-line="7" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/m68/models/books.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#104#150#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/m68/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/run_app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/settings/secret.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <marker date="1528602986675" expanded="true" signature="139:217" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Pythoncode/test/try_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/flask_web/blueprint2/views/views.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/templates/index.html" />
+    <entry file="file://$PROJECT_DIR$/flask_web/templates/data_get.html" />
+    <entry file="file://$PROJECT_DIR$/flask_web/forms/data_forms.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/views1.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/blueprint1/views/views2.py" />
+    <entry file="file://$PROJECT_DIR$/../Pythoncode/SQLAlchemy/connect.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/settings/setting.py" />
+    <entry file="file://$PROJECT_DIR$/m68/models/books.py" />
+    <entry file="file://$PROJECT_DIR$/m68/model.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/run_app.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/settings/secret.py" />
+    <entry file="file://$PROJECT_DIR$/../Pythoncode/test/try_test.py" />
     <entry file="file://$USER_HOME$/.virtualenvs/Flask-AGvcODjy/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="327" column="25" lean-forward="true" selection-start-line="327" selection-start-column="25" selection-end-line="327" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Pythoncode/test/with.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding>
-            <element signature="e#121#144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flask_web/models/man.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#116#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Pythoncode/test/with.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/flask_web/models/man.py" />
   </component>
 </project>

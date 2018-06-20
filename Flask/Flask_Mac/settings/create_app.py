@@ -12,6 +12,9 @@ def create_app():
     app = Flask(__name__, template_folder='../blueprint1/templates', static_folder='../blueprint1/static')
     app.config.from_object(config)
     # 注册蓝图
+    print("~~~~~~~~~~~~~~~")
+    print(__name__)
+    print("~~~~~~~~~~~~~~~")
     register_blueprint(app)
     return app
 
