@@ -1,0 +1,166 @@
+html {
+  height: 100%;
+  width: 100%;
+    margin: 0px;
+  display: table;
+}
+
+body{
+    margin: 0px;
+    display: table-cell;
+    height: 100%;
+    background-color: rgba(9, 255, 99, 0);
+}
+
+
+div{
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#div_hea{
+    width: 100%;
+    height: 52px;
+    background-color: #e7e7e7;
+}
+
+#div_left{
+    width: 18%;
+    height: 100%;
+    background-color: rgba(9, 255, 99, 0.01);
+    float: left;
+}
+
+#div_left_1{
+    width: 80%;
+    height:80%;
+    margin: 10% 10%;
+    float: left;
+}
+
+#div_right_1{
+    width: 80%;
+    height:80%;
+    margin: 10% 10%;
+
+    float: left;
+}
+
+#div_center{
+    width: 64%;
+    float: left;
+}
+
+#div_center_1{
+    width: 90%;
+    height:90%;
+    margin: 5% 5%;
+}
+
+
+#div_right_2{
+    width: 100%;
+    height:200px;
+}
+
+
+
+#div_right{
+    width: 18%;
+    float: left;
+}
+
+#div_footer{
+    width: 100%;
+    height: auto;
+    clear: both;
+    background-color: #e7e7e7;
+}
+
+#text_footer{
+    text-align: center;
+    padding: 5px 0px;
+}
+
+
+#text_hea{
+    text-align: center;
+    line-height: 52px;
+}
+
+
+b{
+    padding: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#hwy_img{
+    width: 20%;
+}
+
+#line{
+    width: 1px;
+    height:60%;
+    margin: 0px 99%;
+    background-color: rgba(8, 4, 10, 0.26);
+}
+
+#line_2{
+    width: 1px;
+    height:60%;
+    margin: 0px;
+    background-color: rgba(8, 4, 10, 0.26);
+}
+
+#line_r{
+    width: 1px;
+    height:60%;
+    margin: 0px;
+    background-color: rgba(8, 4, 10, 0.26);
+}
+
+code{
+    text-align: center;
+    line-height: inherit;
+    padding: 1.5px;
+    border: 1px solid #eaeaea;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #b52a1d;
+}
+
+
+pre {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    line-height: 20px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 2px;
+}
+
+pre, code, tt {
+    font-size: 12px;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+pre > code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent;
+}
+
+
+#info{
+    margin: 5px 5px;
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+{% for book in data %}
+    <a href="http://127.0.0.1:8000/blog/?pk={{ book.id }}">{{ book.title }}</a>
+    <br>
+
+{% endfor %}
+</body>
+</html>

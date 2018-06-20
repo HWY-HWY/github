@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<img src={% static "img1.jpg" %} alt="">
+<h4>{{ data.title }}</h4>
+<br>
+<hr>
+<h4>{{ data.content|safe }}</h4>
+</body>
+</html>
