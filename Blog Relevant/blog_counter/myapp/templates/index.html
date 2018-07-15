@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div style="text-align: center">
+    {% for blog in data %}
+        <h3><a style="" href="/content/?pk={{ blog.pk }}">{{ blog.title }}(阅读数量：{{ blog.readnum }})</a></h3>
+        <br/>
+    {% endfor %}
+</div>
+</body>
+</html>
