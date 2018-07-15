@@ -10,8 +10,11 @@ class Article(models.Model):
     text = models.CharField(max_length=200)
 
     def readnum(self):
-        self.read_num_data = self.read_num.read_num_data
-        return self.read_num_data
+        try:
+            self.read_num_data = self.read_num.read_num_data
+            return self.read_num_data
+        except:
+            return 0
 
 
 # 创建一个记录阅读数量的模型
