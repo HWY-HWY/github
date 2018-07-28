@@ -11,20 +11,27 @@ def show_Articles_data(request):
     # 得到get请求中的页码参数
     page_num = request.GET.get('page', 1)
     # 实例化一个分页器
-    paginator = Paginator(data, 5)
+    paginator = Paginator(data, 50)
     # 通过页码获得对应的文章，可以使用paginator.page， 但是这个方法不能对get获得的数据进行筛选，所以使用get_page
     article_list = paginator.get_page(page_num)
     context = {}
     context['data'] = article_list.object_list
     context['obj'] = article_list
-    if int(page_num) == 1:
-        context["page_num"] = range(int(page_num), int(page_num) + 3)
+    if int(article_list.number) == 1:
+        if (int(article_list.number) + 3) <= paginator.num_pages:
+            context["page_num"] = range(int(article_list.number), int(article_list.number) + 3)
+        else:
+            context["page_num"]=range(int(article_list.number), int(article_list.number) + 1)
     # 判断是否是最后一页
     elif not article_list.has_next():
-        context["page_num"]=range(int(page_num) - 2, int(page_num) + 1)
+        context["page_num"]=range(int(article_list.number) - 2, int(article_list.number) + 1)
     else:
-        context['page_num'] = range(int(page_num) - 1, int(page_num) + 2)
-    print(context["page_num"])
+        if (int(article_list.number) - 1) > 0 and (int(article_list.number) + 1) <= paginator.num_pages:
+            context['page_num'] = range(int(article_list.number) - 1, int(article_list.number) + 2)
+        elif (int(article_list.number) - 1) <= 0 and (int(article_list.number) + 1) <= paginator.num_pages:
+            context['page_num']=range(1, int(article_list.number) + 2)
+        else:
+            context['page_num']=range(1, int(article_list.number) + 1)
     return render(request, 'index.html', context)
 
 
