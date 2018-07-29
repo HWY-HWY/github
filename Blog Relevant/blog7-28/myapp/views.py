@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+﻿from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -74,7 +74,7 @@ def content(request):
 def login(request):
     if request.method == "GET":
         context = {}
-        context['previous_page'] = request.GET.get('from_page')
+        context['previous_page'] = request.GET.get('from_page', '/index')
         return render(request, 'login.html', context)
     else:
         username = request.POST['username']
@@ -82,39 +82,40 @@ def login(request):
         try:
             user = authenticate(request, username=username, password=password)
             auth.login(request, user)
-            return HttpResponseRedirect(request.GET.get('from_page'))
+            return HttpResponseRedirect(request.GET.get('from_page', '/index'))
         except:
             context = {}
             context['login_info'] = True
-            context['previous_page']=request.GET.get('from_page')
+            context['previous_page']=request.GET.get('from_page', '/index')
             return render(request, 'login.html', context)
 
 
 # 用户注销
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(request.GET.get('from_page'))
+    return HttpResponseRedirect(request.GET.get('from_page', '/index'))
 
 
 # 用户注册
 def register(request):
     if request.method == "GET":
         context = {}
-        context['previous_page'] = request.GET.get('from_page')
+        context['previous_page'] = request.GET.get('from_page', '/index')
         return render(request, 'register.html', context)
     else:
         try:
             username = request.POST['username']
             password = request.POST['password']
+            # 判断用户名是否存在
             if User.objects.filter(username=username).exists():
                 context = {}
                 context['register_info'] = True
-                context['previous_page']=request.GET.get('from_page')
+                context['previous_page']=request.GET.get('from_page', '/index')
                 return render(request, 'register.html', context)
             else:
                 user = User.objects.create_user(username=username, password=password)
                 user.save()
-                return HttpResponseRedirect(request.GET.get('from_page'))
+                return HttpResponseRedirect(request.GET.get('from_page', '/index'))
         except:
             return HttpResponse('注册过程异常，请重新注册！')
 

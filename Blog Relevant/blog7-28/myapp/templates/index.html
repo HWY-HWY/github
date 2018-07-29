@@ -9,7 +9,7 @@
 <body>
 <div style="text-align: center">
 <div style="text-align: right; margin-right: 100px" >
-    {% if user.is_authenticated %}
+    {% if request.user.is_authenticated %}
         <h4><b>欢迎：{{ user }}/<a href="/logout/?from_page={{ request.get_full_path }}">~注销~</a></b></h4>
     {% else %}
         <h4><b>欢迎：游客/<a href="/login/?from_page={{ request.get_full_path }}">~登录~</a>/<a href="/register/?from_page={{ request.get_full_path }}">~注册~</a></b></h4>
