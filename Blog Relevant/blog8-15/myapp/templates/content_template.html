@@ -1,0 +1,66 @@
+{# content_template.html #}
+{% load staticfiles %}
+{% load get_attitude_num %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>content</title>
+    <link rel="stylesheet" href={% static 'CSS/content_template.css' %}>
+    <script type="text/javascript" src="http://www.huangwenyang.cn/static/jquery.min.js"></script>
+</head>
+<body>
+<div id="content">
+    {{ text }}
+    <hr>
+    <h5>态度</h5>
+    <div class="attitude_img" onclick="publish_attitude(this, 'flower', 'article', {{ pk }})"><img src={% static 'image/xianhua.gif' %}><small><span class="attitude_text {% get_attitude_record 'article' pk user 'flower' %}">鲜花</span><span class="attitude_num_flower">({% get_attitude_num 'article' pk 'flower' %})</span></small></div>
+    <div class="attitude_img" onclick="publish_attitude(this, 'handshake', 'article', {{ pk }})"><img src={% static 'image/woshou.gif' %}><small><span class="attitude_text {% get_attitude_record 'article' pk user 'handshake' %}">握手</span><span class="attitude_num_handshake">({% get_attitude_num 'article' pk 'handshake' %})</span></small></div>
+    <div class="attitude_img" onclick="publish_attitude(this, 'pass', 'article', {{ pk }})"><img src={% static 'image/luguo.gif' %}><small><span class="attitude_text {% get_attitude_record 'article' pk user 'pass' %}">路过</span><span class="attitude_num_pass">({% get_attitude_num 'article' pk 'pass' %})</span></small></div>
+    <div class="attitude_img" onclick="publish_attitude(this, 'shocking', 'article', {{ pk }})"><img src={% static 'image/leiren.gif' %}><small><span class="attitude_text {% get_attitude_record 'article' pk user 'shocking' %}">雷人</span><span class="attitude_num_shocking">({% get_attitude_num 'article' pk 'shocking' %})</span></small></div>
+    <div class="attitude_img" onclick="publish_attitude(this, 'egg', 'article', {{ pk }})"><img src={% static 'image/jidan.gif' %}><small><span class="attitude_text {% get_attitude_record 'article' pk user 'egg' %}">鸡蛋</span><span class="attitude_num_egg">({% get_attitude_num 'article' pk 'egg' %})</span></small></div>
+    <hr>
+</div>
+
+
+
+{# Js代码 #}
+<script type="text/javascript">
+    function publish_attitude(obj, attitude_type, content_type, object_id) {
+        $.ajax({
+            url: '/get_attitude/',
+            type: 'GET',
+            data: {
+                attitude_type: attitude_type,
+                content_type: content_type,
+                object_id: object_id,
+            },
+            cache: false,
+            success: function (data) {
+                console.log(data)
+                if (data['status'] == 'SUCCESS'){
+                    // 更新状态
+                    var record = $(obj.getElementsByClassName('attitude_text'))
+                        record.addClass('active')
+                    // 更新数量
+                    var attitude_num = $(obj.getElementsByClassName('attitude_num_' + data['attitude_type']))
+                    attitude_num.text('(' + data['attitude_num'] + ')')
+
+                }
+                else{
+                    // 以弹窗的形式显示错误信息
+                    alert(data['message'])
+
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr)
+            }
+
+        });
+        return false;
+    }
+</script>
+
+</body>
+</html>

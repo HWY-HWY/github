@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="http://www.huangwenyang.cn/static/jquery.min.js"></script>
+    <title>ajax_page</title>
+</head>
+<body>
+<div style="text-align: center">
+    {# 得到最初的GET请求页面数据 #}
+    {% for page in content %}
+        <a href="/content/?pk={{ page.pk }}" target="_blank">{{ page.title }}</a>
+        <br>
+    {% endfor %}
+    <form id="ajax_page">
+        {% csrf_token %}
+        <input id="submit" type="submit" name="submit" value="加载更多" class="btn btn-info">
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    $('#ajax_page').submit(function () {
+        $.ajax({
+            url: '/ajax_page/',
+            type: 'POST',
+            cache: true,
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log(data);
+                // 循环遍历数据并增加到前端页面
+                for(var i=0; i<data['ar_list'].length; i++){
+                    var comment_html = "<div id='hwy_1'>" +
+                    "<a href='/content/?pk=" + data['ar_id'][i] + "' target='_blank'>" + data['ar_list'][i] + "</a>"
+                    + "</div>";
+                $('#ajax_page').before(comment_html);
+                }
+                // 判断当前页的是否有下一页，如果没有下一页则禁止按钮点击
+                if (data['has_next'] == 'no'){
+                    $('#submit').attr('value', '没有了...');
+                    $('#submit').attr('disabled', 'disabled');
+                }
+            }
+        });
+        return false;
+    });
+</script>
+</html>
