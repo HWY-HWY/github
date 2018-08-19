@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{%  load  staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>run_img_list</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body style="margin: 0px">
+<div style="margin: 0px; padding: 0px">
+ <img style="width: 100%; margin: 0px" src={% static 'image/RunTitle.jpg' %}>
+</div>
+<div style="width: 100%; height: 80px; background-color: #f1f4f9; padding: 0px"></div>
+<div class="row" style="width: 100%; margin-top: 5%;">
+  <div class="col-xs-6 col-md-3" style="width: 100%; padding-left: 20%">
+      {% for run in run_list %}
+          <div style="display: inline-block; width: 20%; text-align: center">
+              <b>{{ run.time }}</b>
+            <img style="width: 100%"  class="thumbnail" src='/media/{{ run.img }}' />
+          </div>
+      {% endfor %}
+  </div>
+</div>
+<div style="text-align: center">
+        <ul class="pagination">
+            <li>
+                {% if obj.number == 1 %} {# 判断当前页码是否为第一页，如果为第一页，则禁止点击 #}
+                    <a class="previous disabled" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% else %}
+                    <a href="?page={{ obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% endif %}
+
+            </li>
+            {% for num in page_num %}
+                {% if num == obj.number %}
+                    <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                {% if not obj.has_next %} {# 判断是否有下一页，如果没有下一页，则禁止点击 #}
+                    <a class="previous disabled" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% else %}
+                    <a href="?page={{ obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% endif %}
+
+            </li>
+        </ul>
+</div>
+</body>
+</html>
