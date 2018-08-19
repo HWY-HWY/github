@@ -1,0 +1,136 @@
+{# index.html #}
+<!DOCTYPE html>
+{%  load  staticfiles %}
+{% load get_like_num %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>index</title>
+    {% endblock %}
+    <script type="text/javascript" src="http://www.huangwenyang.cn/static/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href={% static 'CSS/index.css' %}>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+{# head #}
+<div style="height: 50px; background-color: #f1f4f9">
+    <span style="line-height: 50px; margin: 10%"><b>首页</b></span>
+    <span style="line-height: 50px; margin: 10%"><b>Python</b></span>
+    <span style="line-height: 50px; margin: 10%"><b>PHP</b></span>
+    <span style="line-height: 50px; margin: 10%"><b>Java</b></span>
+</div>
+<div style="text-align: center">
+<div style="text-align: right; margin-right: 100px" >
+
+    {% if request.user.is_authenticated %}
+        <h5><b>欢迎：{{ user }}/<a href="/logout/?from_page={{ request.get_full_path }}">~注销~</a>/<a href="/user_info">~个人信息~</a></b></h5>
+    {% else %}
+        <h5><b>欢迎：游客/<a href="/loginform/?from_page={{ request.get_full_path }}">~登录~</a>/<a href="/register/?from_page={{ request.get_full_path }}">~注册~</a></b></h5>
+    {% endif %}
+</div>
+    {% for blog in data %}
+        <a style="" href="/content/?pk={{ blog.pk }}">{{ blog.title }}(阅读数量：{{ blog.readnum }})</a>
+        {% load template_test %}
+
+
+
+        <span id="like" onclick="change_like(this, 'article', {{ blog.pk }})" style="cursor: pointer;">点赞：
+            <span class="glyphicon glyphicon-thumbs-up {% get_like_record 'article' blog.pk user %}" ></span>
+            <span class="like_num">（{% get_like_num 'article' blog.pk %}）</span>
+        </span>
+
+
+
+        &nbsp;&nbsp;&nbsp;作者：{% test blog.pk %}
+        <br/>
+    {% endfor %}
+</div>
+{% block content %}
+<div style="text-align: center; text-align: center;">
+        <ul class="pagination">
+            <li>
+                {% if obj.number == 1 %} {# 判断当前页码是否为第一页，如果为第一页，则禁止点击 #}
+                    <a class="previous disabled" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% else %}
+                    <a href="?page={{ obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% endif %}
+
+            </li>
+            {% for num in page_num %}
+                {% if num == obj.number %} {# 判断是否是当前页，如果是则激活高亮显示 #}
+                    <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                {% if not obj.has_next %} {# 判断是否有下一页，如果没有下一页，则禁止点击 #}
+                    <a class="previous disabled" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% else %}
+                    <a href="?page={{ obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% endif %}
+
+            </li>
+        </ul>
+</div>
+    <div class="" style="display: inline-block"></div>
+{% endblock %}
+{# floor #}
+<div style="height: 50px; background-color: #f1f4f9; text-align: center; margin-top: 400px">
+    <span style="line-height: 50px;"><b>黄文杨的个人博客网站  ©2017-2018    请尊重作者的知识版权 </b></span>
+</div>
+</body>
+<script type="text/javascript">
+    function change_like(obj, content_type, object_id) {
+        // 判断obj中是否包含active的元素，用于判断当前状态是否为激活状态
+        var is_like = obj.getElementsByClassName('active').length == 0
+        $.ajax({
+            url: '/like_up/',
+            // 为了避免加入csrf_token令牌，所以使用GET请求
+            type: 'GET',
+            // 返回的数据用于创建一个点赞记录
+            data: {
+                content_type: content_type,
+                object_id: object_id,
+                is_like: is_like,
+            },
+            cache: false,
+            success: function (data) {
+                console.log(data);
+                if (data['status'] == 'SUCCESS'){
+                    // 更新点赞状态
+                    // 通过class找到对应的标签
+                    var record = $(obj.getElementsByClassName('glyphicon'))
+                    if (is_like){
+                        record.addClass('active')
+                    }
+                    else {
+                        record.removeClass('active')
+                    }
+                    // 更新点赞数量
+                    var like_num = $(obj.getElementsByClassName('like_num'))
+                    like_num.text('（' + data['like_num'] + '）')
+
+                }
+                else {
+                    // 以弹窗的形式显示错误信息
+                    alert(data['message'])
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr)
+            }
+        });
+        return false;
+    };
+</script>
+</html>

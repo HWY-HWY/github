@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="http://www.huangwenyang.cn/static/jquery.min.js"></script>
+    <title>Ajax</title>
+</head>
+<body style="text-align: center; margin-top: 200px">
+<div id="ajax_data">
+
+</div>
+<div >
+    <form id="hwy" action="/ajax_form/" method="post">
+        {% csrf_token %}
+        <input id="hwy_input" type="text" name="username">
+        <br/>
+        <input type="password" name="password">
+        <br>
+        <input type="submit" name="submit" value="提交">
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    {# 通过id找到对应的表单 #}
+    $('#hwy').submit(function () {
+        {# 使用ajax进行数据异步提交 #}
+        $.ajax({
+            // 提交数据的url
+            url: '/ajax_form/',
+            // 提交数据的方式为POST
+            type: 'POST',
+            // 指定提交的数据，这里使用的serialize方法，该方法可以将当前的表单转化为可以使用Ajax提交的数据格式
+            data: $(this).serialize(),
+            // 不开启数据缓存
+            cache: false,
+            // 请求成功则会执行该方法
+            success: function (data) {
+                // 显示响应到的数据
+                console.log(data);
+                // 插入数据
+                var comment_html = "<div id='hwy_1'>" + data['log_info'] + "</div>";
+                $('#hwy_1').remove();
+                $('#ajax_data').prepend(comment_html);
+                $('#hwy_input').val('');
+            },
+
+        });
+        {# 放回一个false，使得点击提交按钮后不会进行数据提交 #}
+        return false;
+
+    });
+</script>
+</html>
