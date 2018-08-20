@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_info</title>
+</head>
+<body>
+{% for article in articles %}
+    <a style="float: right" href="/content/?pk={{ article.content_object.pk }}">{{ article.content_object.title }}</a>
+    <br/>
+{% endfor %}
+</body>
+</html>
