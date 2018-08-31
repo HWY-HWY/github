@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <script type="text/javascript" src="http://www.huangwenyang.cn/static/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="containter" style="margin-top:5%; width:100%">
+    <div class="row" style="width:90%; margin-left:5%">
+        <div class="col-xs-4 col-xs-offset-4" style="width:100%; margin-left:0px;">
+            <div class="panel panel-default" style="width: 300px; margin: 0 auto">
+                  <div class="panel-heading">
+                          <h3 class="panel-title">用户注册</h3>
+                    </div>
+                 <div class="panel-body">
+                         <form id="register" action="/register/?from_page={{ previous_page }}" method="POST">
+                             {% csrf_token %}
+
+                             {# 前一个页面 #}
+                             <input type="hidden" name="previous_page" value="{{ previous_page }}">
+
+                             {# 用户名 #}
+                             <label for="id_username_or_email">用户名</label>
+                             <input name="username" class="form-control" placeholder="请输入用户名" required="" id="id_username" type="text">
+                             <p class="text-danger"></p>
+
+                             {# 邮箱 #}
+                             <label for="id_email">邮箱</label>
+                             <input name="email" class="form-control" placeholder="请输入邮箱" required="" id="id_email" type="text">
+                             <p class="text-danger"></p>
+
+                             {# 验证码 #}
+                             <label for="id_verification_code">验证码</label>
+                             <input name="verification_code" class="form-control" placeholder="请输入验证码" required="" id="id_verification_code" type="text">
+                             <p class="text-danger"></p>
+
+                             {# 密码 #}
+                             <label for="id_password">密码</label>
+                             <input name="password" class="form-control" placeholder="请输入密码" required="" id="id_password" type="password">
+                             <p class="text-danger"></p>
+
+                             {# 再输入密码 #}
+                             <label for="id_again_password">再输入一次密码</label>
+                             <input name="again_password" class="form-control" placeholder="再输入一次密码" required="" id="id_again_password" type="password">
+                             <p class="text-danger"></p>
+
+                             {# 发送验证码 #}
+                             <span class="pull-right text-danger"></span>
+                             <div class="clearfix"></div>
+                             <input value="发送验证码" class="btn btn-primary pull-left" type="button" onclick="get_verification_code()">
+
+                             <span class="pull-left text-danger"></span>
+                             <div class="clearfix" style="display: inline-block"></div>
+                             <input value="注册" class="btn btn-primary pull-right" type="submit" >
+                        </form>
+
+                </div>
+            </div>
+
+    </div>
+
+    </div>
+</div>
+{# 用户注册js代码 #}
+<script type="text/javascript">
+    function get_verification_code() {
+        // 得到form表单中输入的email数据，从而将email通过POST请求传递给后端注册
+        var email = $('#id_email').val();
+        $.ajax({
+            url: '/get_verification_code/',
+            type: 'POST',
+            cache: false,
+            data: {
+                // 将email传递给后端
+                email: email,
+            },
+            success: function (data) {
+                console.log(data)
+                // 当email账号已经注册时，将对应的错误提示信息以弹窗的形式显示
+                if (data['status'] == 'ERROR'){
+                    alert(data['message'])
+                }
+            }
+        })
+    }
+    // 注册按钮触发的js代码
+    $('#register').submit(function () {
+        $.ajax({
+            url: '/register/',
+            type: 'POST',
+            cache: false,
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log(data);
+                if (data['status'] == 'SUCCESS') {
+                    // 注册成功后将提示信息以弹窗的形式显示
+                    alert(data['message']),
+                    // 当消除弹窗后重定向到指定的url
+                    window.location.href=data['previous_page']
+                }
+                // 当信息发生错误时弹窗提示相应的错误信息
+                else {
+                    alert(data['message'])
+                }
+
+            }
+        });
+        return false
+    })
+</script>
+</body>
+</html>
