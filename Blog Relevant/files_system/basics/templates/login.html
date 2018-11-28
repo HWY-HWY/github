@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄文杨的私有云</title>
+    <link rel="shortcut icon" href='/static/image/树莓派.ico'>
+
+    <script type="text/javascript" src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href={% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}>
+
+</head>
+
+<body>
+    <div class='containter' style='margin-top:15%; width:100%'>
+    <div class='row' style="width:100%; margin: 0 auto">
+        <div class='col-xs-4 col-xs-offset-4' style="width:100%; margin-left:0px;">
+            <div class="panel panel-default" style="width: 300px; margin: 0 auto">
+                  <div class="panel-heading">
+			  <h5 style='text-align: center; color: #337ab7;'  class="panel-title">黄文杨的私有云</h5>
+                    </div>
+                 <div class="panel-body">
+                         <form action='/login/' method='POST'>
+                            {% csrf_token %}
+				<input type='password' name='password'  placeholder="请输入密码" class="form-control" ></span>
+                            <span class='pull-left text-danger'>{{ login_form.non_field_errors  }}</span>
+                            <div class='clearfix'></div>
+			    <br>
+                        </form>
+  
+                </div>
+            </div>
+    
+    </div>
+
+    </div>
+    </div>
+
+</body>
+</html>
+
+

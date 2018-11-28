@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>黄文杨的私有云</title>
+     <script type="text/javascript" src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href={% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}>
+
+   <link rel="shortcut icon" href='/static/image/树莓派.ico'>
+</head>
+<body style='height: 100%'>
+	<div style='width: 80%; margin: 0 auto'>
+			<pre>
+{{ text }}
+			</pre>
+	</div>
+</body>
+</html>

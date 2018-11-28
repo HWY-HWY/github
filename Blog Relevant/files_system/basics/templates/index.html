@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>黄文杨的私有云</title>
+    <link rel="shortcut icon" href='/static/image/树莓派.ico'>
+    <script type="text/javascript" src="{% static "JS/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href={% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}>
+    <script src="/static/JS/webuploader.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/CSS/webuploader.css">
+    {# 扇形图开始 #}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <style>
+    /* css 代码  */
+    </style>
+    <script src="/static/JS/highcharts.js"></script>
+    <script src="/static/JS/exporting.js"></script>
+    {# 扇形图结束 #}
+ 
+</head>
+<body>
+
+	{# 头部开始 #}
+	
+	<div class="navbar navbar-default navbar-fixed-top">
+  	<div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">一稚杨的私有云</a>
+      <img class='col-sm-2' style='margin-top: 5px'  src='/static/image/树莓派.png'>
+    </div>
+
+  </div><!-- /.container-fluid -->
+</div>
+
+
+	{# 头部结束 #}
+
+
+	{# 上传文件进度条开始 #}
+	    <div class="progress" style='margin-top: 50px'>       <!-- 进度条 -->
+            <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:0%;"></div>
+       	     </div>
+
+	{# 上传文件进度条结束 #}
+
+
+	{# 文件列表区开始 #}
+	<div style='margin-top: 10px' class="col-sm-7" id='file_dir'>
+		<h4>文件夹
+			<a class="btn btn-default" href="javascript:void(0);" onclick="mkdir(this, '{{ path }}')" role="button" style='margin-left: 30px'>
+				<img src='/static/image/add_files.png'>
+				新建文件夹</a>
+
+		<a id="picker"  class="btn btn-default" href="#" role="button" style='margin-left: 30px'>
+				<img src='/static/image/upload.png'>
+				上传文件</a>
+		<a  class="btn btn-default" href="/open_folder?url=/Users/hwy/Desktop/回收站" style='margin-left: 30px'>
+				<img src='/static/image/回收站.PNG'>
+				回收站</a>
+
+		</h4>
+		<div style='color: #4287ed'>
+			{% if path == '/Users/hwy/Desktop' %}
+			<span style='color: #4287ed'>返回上一级 </span>
+			{% else %}
+			<a href='/go_back?path={{ path }}' style='color: #4287ed'>返回上一级 </a>
+			{% endif %}
+			<h4 style='display: inline'>|</h4>
+			<a href='/index' style='color: #4287ed'>根目录</a>
+			{% for f in history_url %}
+			>
+			<a href='/jump?keywords={{ f }}&path={{ path }}' style='color: #4287ed'>{{ f }}</a>
+			{% endfor %}
+		</div>
+
+		<hr style='margin: 2px'>
+		{% for file in file_list  %}
+		{% if file.states %}
+		<div id="{{ file.url }}">
+		<div style='display: inline-block' class="col-sm-8">
+		<a href='/open_folder?url={{ file.url }}'>
+			<h4 style='display: inline-block; margin: 2px'>
+				<img style='width: 20px' src='/static/image/file.png'>
+			</h4>
+			<span id='{{ file.url }}text'>{{ file.sub_url }}</span>
+		</a>
+		<hr style='margin: 2px'>
+		</div>
+
+		<div style='display: inline-block' class="col-sm-1">
+
+		<div class="btn-group">
+		<a href='#' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+			<h4>
+			<span class='glyphicon glyphicon-option-horizontal' style="color:#66b3ff"></span>
+			</h4>
+		</a>
+		<ul class="dropdown-menu">
+			<li><a href="javascript:void(0);" onclick="rename(this, '{{ file.url }}', '{{ file.sub_url }}')">重命名</a></li>
+			<li><a href="javascript:void(0);" onclick="file_rar(this, '{{ file.url }}', '{{ file.sub_url }}')">压缩</a></li>
+			<li><a href="javascript:void(0);" onclick="rm_file(this, '{{ file.url }}')">删除</a></li>
+		 </ul>
+		</div>
+		
+		</div>
+
+		</div>
+		{% endif %}
+		
+		{% endfor  %}
+	</div>
+	<div style='margin-top: 10px' class="col-sm-5">
+		<h4>文件</h4>
+		<hr style='margin: 2px; margin-top: 48px'>
+		{% for file in file_list  %}
+		{% if not file.states %}
+		<div id='{{ file.url }}'>
+		<div style='display: inline-block' class="col-sm-8" class='{{ file.url }}'>
+		<a href='/content?url={{ file.url }}' target='_blank'>
+			<h5 style='display: inline-block; margin: 2px'>
+				<img style='width: 20px' src='/static/image/text.png'>
+			</h5>
+			<span id='{{ file.url }}text'>&nbsp;{{ file.sub_url }}</span></a>
+		<hr style='margin: 2px'>
+		</div>
+
+
+
+
+		<div style='display: inline-block' class="col-sm-1">
+
+	<div class="btn-group">
+		<a href='#' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+			<h4>
+			<span class='glyphicon glyphicon-option-horizontal' style="color:#66b3ff"></span>
+			</h4>
+		</a>
+		<ul class="dropdown-menu">
+			{% if file.is_rar %}
+			<li><a href="javascript:void(0);" onclick="unzip(this, '{{ file.url }}', '{{ file.sub_url }}')">解压</a></li>
+			{% endif %}
+			<li><a href="/download?url={{ file.url }}">下载</a></li>
+			<li><a href="javascript:void(0);" onclick="rename(this, '{{ file.url }}', '{{ file.sub_url }}')">重命名</a></li>
+			<li><a href="javascript:void(0);" onclick="rm_file(this, '{{ file.url }}')">删除</a></li>
+		 </ul>
+		</div>
+		
+		</div>
+
+		</div>
+
+
+		{% endif %}
+		{% endfor  %}
+	</div>
+
+	{# 文件列表区结束 #}
+
+
+	{# 扇形图区域开始 #}
+	<div id="container" class="col-sm-6" style='margin-top: 50px'></div>
+	        <script>
+var num = '{{ num|safe }}';
+           var  chart = Highcharts.chart('container', {
+	chart: {
+		plotBackgroundColor: null,
+		plotBorderWidth: null,
+		plotShadow: false
+	},
+	title: {
+		text: '服务器信息'
+	},
+	tooltip: {
+		headerFormat: '{series.name}<br>',
+		pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+	},
+	plotOptions: {
+		pie: {
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true,
+				format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+				style: {
+					color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				}
+			},
+			states: {
+				hover: {
+					enabled: false
+				}  
+			},
+			slicedOffset: 20,         // Í»³ö¼ä¾à
+			point: {                  // Ã¿¸öÉÈÇøÊÇÊý¾Ýµã¶ÔÏó£¬ËùÒÔÊÂ¼þÓ¦¸ÃÐ´ÔÚ point ÏÂÃæ
+				events: {
+					// Êó±ê»¬¹ýÊÇ£¬Í»³öµ±Ç°ÉÈÇø
+					mouseOver: function() {
+						this.slice();
+					},
+					// Êó±êÒÆ³öÊ±£¬ÊÕ»ØÍ»³öÏÔÊ¾
+					mouseOut: function() {
+						this.slice();
+					},
+					// Ä¬ÈÏÊÇµã»÷Í»³ö£¬ÕâÀïÆÁ±Îµô
+					click: function() {
+						return false;
+					}
+				}
+			}
+		}
+	},
+	series: [{
+		type: 'pie',
+		name: '系统信息',
+		data: [
+			['系统硬盘：20G/12G/7.5G',   45.0],
+			['挂载硬盘：58G/47G/12G',       26.8],
+			{
+				name: '内存信息：3.8G/1.8G',
+				y: 12.8,
+				sliced: true, // Í»³öÏÔÊ¾Õâ¸öµã£¨ÉÈÇø£©£¬ÓÃÓÚÇ¿µ÷¡£
+			},
+			['当前进程数：288',    8.5],
+			['IP：192.168.153.130',     6.2],
+			['当前系统：Ubuntu17.10/64位',   0.7]
+		]
+	}]
+});
+        	</script>
+	{# 扇形图区域结束 #}
+
+
+ 	{# 直线图开始 #}
+<div id="container1" class="col-sm-6" style='margin-top: 50px'></div>
+    <script>
+        // 图表配置
+        var options = {
+            chart: {
+                type: 'line'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: null                 // 标题
+            },
+            xAxis: {
+                categories: ['-30', '-25', '-20', '-15', '-10', '-5', '0'],  // x 轴分类
+                tickmarkPlacement: 'on',
+            },
+            yAxis: {
+                title: {
+                    text: null      // y 轴标题
+                },
+                labels: { enabled: false },
+                gridLineDashStyle: 'Dash',
+            },
+            series: [{                              // 数据列
+                name: 'CPU温度(℃)',                      // 数据列名
+                data: [35.6, 35.6, 35.0, 34.5, 36.5, 36.5, 34.0]                  // 数据
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+{#            legend: { enabled: false },#}
+            credits: { enabled: false },
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('container1', options);
+    </script>
+
+
+	{# 直线图结束 #}
+
+
+ 	{# 删除js代码开始 #}
+	<script type="text/javascript">
+		function rm_file(obj, path){
+			$.ajax({
+			url: '/rm_file_ajax',
+			type: 'GET',
+			data: {
+				'path': path,
+			},
+			cache: false,
+			success: function(data){
+				console.log(data)
+				if (data['status'] == 'success'){
+					var re = document.getElementById(path);
+					// 更新状态
+					$(re).hide();
+
+				}
+				else{
+					// 以弹窗的形式显示错误信息
+					alert(data['message'])
+				}
+			},
+			error: function(xhr){
+				console.log(chr)
+			}
+			});
+		return false;
+		}	
+	</script>
+	{# 删除js代码结束 #}
+
+
+	{# 新建文件夹JS代码开始 #}
+	<script type="text/javascript">
+		function mkdir(obj, path){
+			file_name = prompt("请输入文件名:","新建文件夹");
+			if (file_name != null){
+			$.ajax({
+			url: '/mkdir',
+			type: 'GET',
+			data: {
+				'path': path,
+				'file_name': file_name,
+			},
+			cache: false,
+			success: function(data){
+				console.log(data)
+				if (data['status'] == 'success'){
+					var re = document.getElementById('file_dir');
+					// 更新状态
+					$(re).append("<div style='display: inline-block' class='col-sm-8'><a href='/open_folder?url=" + path + file_name + "'><h4 style='display: inline-block; margin: 2px'><img style='width: 20px' src='/static/image/file.png'></h4>&nbsp;" + file_name + "</a><hr style='margin: 2px'></div><div style='display: inline-block' class='col-sm-1'><div class='btn-group'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'><h4><span class='glyphicon glyphicon-option-horizontal' style='color:#66b3ff'></span></h4></a><ul class='dropdown-menu'><li><a href='javascript:void(0);' onclick='rm_file(this)'>删除</a></li></ul></div></div>");
+
+				}
+				else{
+					// 以弹窗的形式显示错误信息
+					alert(data['message'])
+				}
+			},
+			error: function(xhr){
+				console.log(chr)
+			}
+			});
+			}
+		return false;
+		}	
+	</script>
+
+		
+	{# 新建文件夹JS代码结束 #}
+
+	{# 文件重命名JS代码开始 #}
+	<script type="text/javascript">
+		function rename(obj, path, name){
+			// 输入新名称
+			new_name = prompt("请输入新的文件名:", name);
+			if (new_name != null){
+			$.ajax({
+			url: '/file_rename',
+			type: 'GET',
+			data: {
+				'path': path,
+				'name': name,
+				'new_name': new_name,
+			},
+			cache: false,
+			success: function(data){
+				console.log(data)
+				if (data['status'] == 'success'){
+				//	var re = document.getElementById(path);
+					// 更新状态
+					document.getElementById(path + 'text').innerText = '  ' + new_name;
+
+				}
+				else{
+					// 以弹窗的形式显示错误信息
+					alert(data['message'])
+				}
+			},
+			error: function(xhr){
+				console.log(chr)
+			}
+			});
+			}
+		return false;
+		}	
+	</script>
+
+	{# 文件重命名JS代码结束 #}
+
+
+	{# 上传文件JS代码开始 #}
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+	var path = '{{ path }}';
+        var task_id = WebUploader.Base.guid();        //产生task_id
+        var uploader = WebUploader.create({           //创建上传控件
+            swf: '/static/webuploader/Uploader.swf', //swf位置，这个可能与flash有关
+            server: '/upload/',                 //接收每一个分片的服务器地址
+            pick: '#picker',                          //填上传按钮的id选择器值
+            auto: true,                               //选择文件后，是否自动上传
+            chunked: true,                            //是否分片
+            chunkSize: 5 * 1024 * 1024,              //每个分片的大小，这里为20M
+            chunkRetry: 3,                            //某分片若上传失败，重试次数
+            threads: 1,                               //线程数量，考虑到服务器，这里就选了1
+            duplicate: true,                          //分片是否自动去重
+            formData: {                               //每次上传分片，一起携带的数据
+                task_id: task_id,
+		path: path,
+            },
+        });
+
+        uploader.on('startUpload', function() {       //开始上传时，调用该方法
+            $('.progress-bar').css('width', '0%');
+            $('.progress-bar').text('0%');
+        });
+
+        uploader.on('uploadProgress', function(file, percentage) { //一个分片上传成功后，调用该方法
+            $('.progress-bar').css('width', percentage * 100 - 1 + '%');
+            $('.progress-bar').text(Math.floor(percentage * 100 - 1) + '%');
+        });
+
+        uploader.on('uploadSuccess', function(file) { 
+		//整个文件的所有分片都上传成功，调用该方法
+		            //上传的信息（文件唯一标识符，文件名）
+		var data = {'task_id': task_id, 'filename': file.source['name'], 'path': '{{ path }}' };
+	    $.get('/upload/success/', data);          // ajax携带data向该url发请求
+            $('.progress-bar').css('width', '100%');
+            $('.progress-bar').text('上传完成');
+        });
+
+        uploader.on('uploadError', function(file) {   //上传过程中发生异常，调用该方法
+            $('.progress-bar').css('width', '100%');
+            $('.progress-bar').text('上传失败');
+        });
+
+        uploader.on('uploadComplete', function(file) {// 上传结束，无论文件最终是否上传成功，该方法都会被调用
+            $('.progress-bar').removeClass('active progress-bar-striped');
+        });
+
+    });
+    </script>
+
+	{# 上传文件JS代码结束 #}
+
+	{# 文件解压JS代码开始 #}
+	<script type="text/javascript">
+		function unzip(obj, path, file_name){
+			$.ajax({
+			url: '/file_unzip',
+			type: 'GET',
+			data: {
+				'url': path,
+				'file_name': file_name,
+			},
+			cache: false,
+			success: function(data){
+				console.log(data)
+				if (data['status'] == 'success'){
+					// 以弹窗的形式通知解压完成
+					alert(data['message'])
+
+				}
+				else{
+					// 以弹窗的形式显示错误信息
+					alert(data['message'])
+				}
+			},
+			error: function(xhr){
+				console.log(chr)
+			}
+			});
+		return false;
+		}	
+	</script>
+
+	{# 文件解压JS代码结束 #}
+
+	{# 文件夹压缩JS代码开始 #}
+	<script type="text/javascript">
+		function file_rar(obj, path, file_name){
+			// 输入新名称
+			new_name = prompt("请输入文件名:", file_name + '.rar');
+			$.ajax({
+			url: '/file_rar',
+			type: 'GET',
+			data: {
+				'path': path,
+				'file_name': file_name,
+				'new_name': new_name,
+			},
+			cache: false,
+			success: function(data){
+				console.log(data)
+				if (data['status'] == 'success'){
+					// 以弹窗的形式通知解压完成
+					alert(data['message'])
+
+				}
+				else{
+					// 以弹窗的形式显示错误信息
+					alert(data['message'])
+				}
+			},
+			error: function(xhr){
+				console.log(xhr)
+			}
+			});
+		return false;
+		}	
+	</script>
+
+	{# 文件夹压缩JS代码结束 #}
+
+
+
+
+
+</body>
+</html>
+
